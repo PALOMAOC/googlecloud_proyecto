@@ -1,0 +1,13 @@
+steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - functions
+      - deploy
+      - function_ejercicio_gcp
+      - --region=europe-west1
+      - --runtime
+      - python39
+      - --trigger-bucket
+      - gs://csv-af-aux
+      - --source=./app
+      - --allow-unauthenticated

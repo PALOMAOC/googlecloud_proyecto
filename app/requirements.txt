@@ -1,0 +1,5 @@
+functions-framework==3.3.0
+flask==2.2.5
+google-cloud-error-reporting==1.9.1
+google-cloud-storage
+google-cloud-bigquery
