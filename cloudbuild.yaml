@@ -3,11 +3,11 @@ steps:
     args:
       - functions
       - deploy
-      - function_ejercicio_gcp
+      - function_proyectofinal_gcp
       - --region=europe-west1
       - --runtime
       - python39
       - --trigger-bucket
-      - gs://csv-af-aux
+      - gs://bucket_formulariojson
       - --source=./app
       - --allow-unauthenticated
