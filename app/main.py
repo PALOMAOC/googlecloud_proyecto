@@ -8,7 +8,7 @@ firestore_client = firestore.Client()
 # Name of the Firestore collection
 collection_name = 'mi-ejercicio-gcp'
 
-def gcs_to_firestore(data, context):
+def cloud_function_handler(data, context):
     # Print the event data
     print(data)
 
