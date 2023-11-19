@@ -11,3 +11,22 @@ steps:
       - gs://bucket_formulariojson
       - --source=./app
       - --allow-unauthenticated
+
+  # Build and push to Docker Hub
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'docker.io/ocanha/app-users-gcp:$COMMIT_SHA', '.']
+  
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'docker.io/ocanha/app-users-gcp:$COMMIT_SHA']
+
+
+  # Deploy to Cloud Run using the image from Docker Hub
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'nombre-del-servicio-cloud-run'
+      - '--image=ocanha/app-users-gcp:$COMMIT_SHA'  # Use your Docker Hub image
+      - '--platform=managed'
+      - '--region=europe-west1'
+      - '--allow-unauthenticated'
