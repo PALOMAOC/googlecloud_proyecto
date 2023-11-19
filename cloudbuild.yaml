@@ -27,12 +27,12 @@ steps:
     args: ['-c', 'docker push $$USERNAME/app-users-gcp:$COMMIT_SHA']
     secretEnv: ['USERNAME']
     
-  availableSecrets:
-    secretManager:
-    - versionName: projects/gcp-final-project-405308/secrets/docker-token/versions/DOCKER_PASSWORD_SECRET_VERSION
-      env: 'PASSWORD'
-    - versionName: projects/gcp-final-project-405308/secrets/docker-username/versions/DOCKER_USERNAME_SECRET_VERSION
-      env: 'USERNAME'
+availableSecrets:
+  secretManager:
+  - versionName: projects/gcp-final-project-405308/secrets/docker-token/versions/DOCKER_PASSWORD_SECRET_VERSION
+    env: 'PASSWORD'
+  - versionName: projects/gcp-final-project-405308/secrets/docker-username/versions/DOCKER_USERNAME_SECRET_VERSION
+    env: 'USERNAME'
 
   # Deploy to Cloud Run using the image from Docker Hub
   - name: 'gcr.io/cloud-builders/gcloud'
