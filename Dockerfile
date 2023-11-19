@@ -4,11 +4,12 @@ FROM python:3.9
 # Set the working directory to /app
 WORKDIR /app
 
+COPY Dockerfile /app
 # Copy the current directory contents into the container at /app
-COPY . /app
+COPY web/* /app
 
 # Copy requirements.txt to /app
-COPY requirements.txt /app
+# COPY requirements.txt /app
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --trusted-host pypi.org -r requirements.txt
@@ -17,5 +18,5 @@ RUN pip install --trusted-host pypi.org -r requirements.txt
 EXPOSE 8080
 
 # Run app.py when the container launches
-CMD ["python", "app/users.py"]
+CMD ["python", "users.py"]
 
