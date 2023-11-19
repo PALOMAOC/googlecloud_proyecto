@@ -1,8 +1,8 @@
 availableSecrets:
   secretManager:
-  - versionName: projects/gcp-final-project-405308/secrets/docker-token
+  - versionName: projects/574156078459/secrets/docker-token/versions/1
     env: 'PASSWORD'
-  - versionName: projects/gcp-final-project-405308/secrets/docker-username
+  - versionName: projects/574156078459/secrets/docker-username/versions/1
     env: 'USERNAME'
 
 steps:
