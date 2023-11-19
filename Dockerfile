@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY Dockerfile /app
 # Copy the current directory contents into the container at /app
-COPY web/* /app
+COPY web/* /app/
 
 # Copy requirements.txt to /app
 # COPY requirements.txt /app
