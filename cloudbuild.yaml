@@ -12,13 +12,28 @@ steps:
       - --source=./cloudfunction
       - --allow-unauthenticated
 
-  # Build and push to Docker Hub
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'docker.io/ocanha/app-users-gcp:$COMMIT_SHA','.']
-  
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'docker.io/ocanha/app-users-gcp:$COMMIT_SHA']
 
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args: ['-c', 'docker login --username=$$USERNAME --password=$$PASSWORD']
+    secretEnv: ['USERNAME', 'PASSWORD']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args: ['-c', 'docker build -t $$USERNAME/app-users-gcp:$COMMIT_SHA .']
+    secretEnv: ['USERNAME']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args: ['-c', 'docker push $$USERNAME/app-users-gcp:$COMMIT_SHA']
+    secretEnv: ['USERNAME']
+    
+  availableSecrets:
+    secretManager:
+    - versionName: projects/gcp-final-project-405308/secrets/docker-token/versions/DOCKER_PASSWORD_SECRET_VERSION
+      env: 'PASSWORD'
+    - versionName: projects/gcp-final-project-405308/secrets/docker-username/versions/DOCKER_USERNAME_SECRET_VERSION
+      env: 'USERNAME'
 
   # Deploy to Cloud Run using the image from Docker Hub
   - name: 'gcr.io/cloud-builders/gcloud'
