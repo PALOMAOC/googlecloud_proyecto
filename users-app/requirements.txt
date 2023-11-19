@@ -1,0 +1,4 @@
+dash
+google-cloud-storage
+google-cloud-firestore
+dash-table
