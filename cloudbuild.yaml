@@ -25,7 +25,7 @@ steps:
     args:
       - 'run'
       - 'deploy'
-      - 'nombre-del-servicio-cloud-run'
+      - 'app-users-gcp'
       - '--image=ocanha/app-users-gcp:$COMMIT_SHA'  # Use your Docker Hub image
       - '--platform=managed'
       - '--region=europe-west1'
