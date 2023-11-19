@@ -9,12 +9,12 @@ steps:
       - python39
       - --trigger-bucket
       - gs://bucket_formulariojson
-      - --source=./app
+      - --source=./cloudfunction
       - --allow-unauthenticated
 
   # Build and push to Docker Hub
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'docker.io/ocanha/app-users-gcp:$COMMIT_SHA', '-f', 'users-app/Dockerfile', '.']
+    args: ['build', '-t', 'docker.io/ocanha/app-users-gcp:$COMMIT_SHA','.']
   
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'docker.io/ocanha/app-users-gcp:$COMMIT_SHA']
