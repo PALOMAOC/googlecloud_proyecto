@@ -1,6 +1,7 @@
 import json
 from google.cloud import storage, firestore
 from dash import Dash, dcc, html, dash_table
+from dash.dependencies import Input, Output, State
 import random
 import datetime
 
@@ -41,8 +42,8 @@ app.layout = html.Div([
 
 # Callback to load the content of the pages
 @app.callback(
-    dash.dependencies.Output('page-content', 'children'),
-    [dash.Input('url', 'pathname')]
+    Output('page-content', 'children'),
+    [Input('url', 'pathname')]
 )
 def display_page(pathname):
     if pathname == '/form':
@@ -67,10 +68,10 @@ def display_page(pathname):
 
 # Route to handle form data submission
 @app.callback(
-    dash.dependencies.Output('output-container-button', 'children'),
-    [dash.Input('submit-button', 'n_clicks'),
-    dash.State('name', 'value'),
-    dash.State('email', 'value')]
+    Output('output-container-button', 'children'),
+    [Input('submit-button', 'n_clicks'),
+    State('name', 'value'),
+    State('email', 'value')]
 )
 def submit_form(n_clicks, name, email):
     if n_clicks > 0:  # Check if the "Submit" button has been clicked
