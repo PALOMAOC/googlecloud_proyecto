@@ -14,7 +14,7 @@ steps:
 
   # Build and push to Docker Hub
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'docker.io/ocanha/app-users-gcp:$COMMIT_SHA', '.']
+    args: ['build', '-t', 'docker.io/ocanha/app-users-gcp:$COMMIT_SHA', '-f', 'users-app/Dockerfile', '.']
   
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'docker.io/ocanha/app-users-gcp:$COMMIT_SHA']
