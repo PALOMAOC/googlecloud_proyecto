@@ -8,8 +8,6 @@ COPY Dockerfile /app
 # Copy the current directory contents into the container at /app
 COPY web/* /app/
 
-# Copy requirements.txt to /app
-# COPY requirements.txt /app
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --trusted-host pypi.org -r requirements.txt
