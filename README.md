@@ -1,4 +1,4 @@
-# Desarrollo de Arquitectura GCP
+# GCP Architecture Development
 
 In this set of exercises, we will explore the implementation of solutions in Google Cloud Platform (GCP), aiming to automate processes related to the storage, processing, and visualization of user information.
 
@@ -7,7 +7,9 @@ In this set of exercises, we will explore the implementation of solutions in Goo
 
 1. [Exercise 1: Data Automation](#exercise-1:-data-automation-on-google-cloud-platform)
 2. [Exercise 2: Creation of a Web Application](#exercise-2:-creation-of-a-web-application)
-3. [Exercise 3: DockerHub Packaging and Cloud Run Execution](#exercise-3:-dockerhub-packiaging-and-cloud-run-execution)
+3. [Exercise 3: DockerHub and Cloud Run Execution](#exercise-3:-dockerhub-and-cloud-run-execution)
+
+
 
 
 ## Exercise 1: Data Automation on Google Cloud Platform
@@ -150,7 +152,7 @@ def function_proyectofinal_gcp(data, context):
 ```
 
 
-## Exercise 2: Creating a WebAPP
+## Exercise 2: Creation of a Web Application
 Creation of a web application to view the user database stored in FireStore and a web form for uploading files to cloud storage. Implementation of a navigation menu that allows access to the users colection and file uploads.
 
 app.py:
@@ -249,7 +251,7 @@ if __name__ == '__main__':
     app.run_server(host='0.0.0.0', port=8080, debug=True)
 ```
 
-## Exercise 3: DockerHub Packaging and Cloud Run Execution
+## Exercise 3: DockerHub and Cloud Run Execution
 ***
 
 dockerfile:
