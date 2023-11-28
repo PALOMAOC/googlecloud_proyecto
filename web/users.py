@@ -27,7 +27,7 @@ def get_firestore_data():
 
 # Define the overall layout of the application
 app.layout = html.Div([
-    html.H1('Navigation Menu'),  # Page title
+    html.H1('prueba Menu'),  # Page title
 
     # Navigation menu
     dcc.Link('User Formulario', href='/form'),  # Link to the user form
