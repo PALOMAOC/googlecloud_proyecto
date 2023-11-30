@@ -1,7 +1,7 @@
 # GCP Architecture Development
 
 In this set of exercises, we will explore the implementation of solutions in Google Cloud Platform (GCP), aiming to automate processes related to the storage, processing, and visualization of user information.
-
+![Alt text](.img/architeturegcp.png)
 
 ## Index
 
@@ -64,42 +64,6 @@ response:
   versionRetentionPeriod: 3600s
 ```
 
-### Cloud Build Creation
-For continuous implementation of changes in the working repository, create a Cloud Build for deploying the Cloud Function.
-![Alt text](.img/image-1.png)
-
-```bash
-gcloud services enable cloudresourcemanager.googleapis.com
-gcloud services enable cloudfunctions.googleapis.com
-gcloud auth application-default login
-gcloud projects add-iam-policy-binding gcp-final-project-405308 --member="user:gcp-final-project-405308@appspot.gserviceaccount.com" --role=roles/cloudfunctions.functions.get
-
-
-gcloud beta builds triggers create cloud-source-repositories \
-    --repo=googlecloud_proyecto \
-    --branch-pattern=main \
-    --build-config=cloudbuild.yaml \
-    --region=europe-west1
-
-```
-IMPORTANT TO ENABLE THE CLOUD FUNCTION DEVELOEPR ROLE AT THE CONSOLE
-
-
-```yaml
-steps:
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args:
-      - functions
-      - deploy
-      - function_proyectofinal_gcp
-      - --region=europe-west1
-      - --runtime
-      - python39
-      - --trigger-bucket
-      - gs://bucket_formulariojson
-      - --source=./app
-      - --allow-unauthenticated
-```
 ### Creación de Cloud Function en GCP
 Create the function in CF that activates when a file is created or updated in CLoud Storage.
 
@@ -150,7 +114,42 @@ def function_proyectofinal_gcp(data, context):
         'Fecha de registro': data['Fecha de registro']
     })
 ```
+### Cloud Build Creation
+For continuous implementation of changes in the working repository, create a Cloud Build for deploying the Cloud Function.
+![Alt text](.img/image-1.png)
 
+```bash
+gcloud services enable cloudresourcemanager.googleapis.com
+gcloud services enable cloudfunctions.googleapis.com
+gcloud auth application-default login
+gcloud projects add-iam-policy-binding gcp-final-project-405308 --member="user:gcp-final-project-405308@appspot.gserviceaccount.com" --role=roles/cloudfunctions.functions.get
+
+
+gcloud beta builds triggers create cloud-source-repositories \
+    --repo=googlecloud_proyecto \
+    --branch-pattern=main \
+    --build-config=cloudbuild.yaml \
+    --region=europe-west1
+
+```
+IMPORTANT TO ENABLE THE CLOUD FUNCTION DEVELOEPR ROLE AT THE CONSOLE
+
+
+```yaml
+steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - functions
+      - deploy
+      - function_proyectofinal_gcp
+      - --region=europe-west1
+      - --runtime
+      - python39
+      - --trigger-bucket
+      - gs://bucket_formulariojson
+      - --source=./app
+      - --allow-unauthenticated
+```
 
 ## Exercise 2: Creation of a Web Application
 Creation of a web application to view the user database stored in FireStore and a web form for uploading files to cloud storage. Implementation of a navigation menu that allows access to the users colection and file uploads.
